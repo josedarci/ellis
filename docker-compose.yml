@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  api:
+    # Constr�i a imagem a partir do Dockerfile no diret�rio atual
+    build: .
+    # Nome do cont�iner para facilitar a identifica��o
+    container_name: gestao_escolar_api
+    # Mapeia a porta 8001 do host para a porta 8001 do cont�iner
+    ports:
+      - "8001:8001"
+    # Monta o diret�rio atual no diret�rio /app do cont�iner
+    # Isso permite o live-reloading e a persist�ncia do banco de dados SQLite no host
+    volumes:
+      - .:/app
+    # O comando para iniciar a aplica��o � herdado do CMD no Dockerfile.
+    # CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8001", "--reload"]
